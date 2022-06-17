@@ -16,13 +16,17 @@ public class MyFrame1 extends JFrame{
     JButton difmedia = new JButton();
     JButton difdificil = new JButton();
     JLabel titulodificultad = new JLabel("Seleccione la dificultad");
-    int tamanioMatriz = 5;
+    Juego juego = new Juego();
+
+
+
     MyFrame1(){
         pantallaInicial();
         setTitle("Batalla Naval - !Agiles");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLayout(null);
         setSize(600,600);
+        setLocationRelativeTo(null);
         setVisible(true);
 
     }
@@ -111,8 +115,8 @@ public class MyFrame1 extends JFrame{
 
     public void seleccionarBarcos(){
         this.setVisible(false);
-        for(int j = 1; j <= tamanioMatriz; j++ ){
-            for (int i=1; i<=tamanioMatriz; i++){
+        for(int j = 1; j <= Main.tamanioMatriz; j++ ){
+            for (int i=1; i<=Main.tamanioMatriz; i++){
                 JButton button = new JButton();
                 button.setBounds((i*50), (50*j), 25, 25);
                 //button.setName("button " + i + " " + j);

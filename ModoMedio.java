@@ -1,2 +1,2 @@
-public class ModoMedio {
+public class ModoMedio implements ModoDisparo{
 }
