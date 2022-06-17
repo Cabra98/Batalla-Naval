@@ -17,6 +17,7 @@ public class MyFrame1 extends JFrame{
     JLabel subtituloseleccion = new JLabel("Seleccione la posición del buque (5 celdas)");
     JButton botoncomenzar = new JButton("Comenzar");
     int cantPosiciones = 0;
+    int tablero[][] = new int[10][10];
 
     MyFrame1(){
         pantallaInicial();
@@ -134,13 +135,16 @@ public class MyFrame1 extends JFrame{
         add(botoncomenzar);
 
         for(int j = 1; j <= Main.tamanioMatriz; j++ ){
+            final int fila = j-1;
             for (int i = 1; i<= Main.tamanioMatriz; i++){
+                final int columna = i-1;
                 JButton button = new JButton();
                 button.setBounds((i*50), (50*j), 25, 25);
                 add(button);
                 button.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
+                        tablero[fila][columna] = 2;
                         button.setEnabled(false);
                         button.setBackground(Color.GREEN);
                         if(barcoposicionado()){
@@ -180,6 +184,13 @@ public class MyFrame1 extends JFrame{
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         new MyFrame2();
+                        botoncomenzar.setEnabled(false);
+                        for(int k = 0; k< Main.tamanioMatriz; k++){
+                            for(int l = 0; l< Main.tamanioMatriz; l++){
+                                System.out.print(tablero[k][l]);
+                            }
+                            System.out.println("\n");
+                        }
                     }
                 });
                 return true;
