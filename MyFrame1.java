@@ -17,7 +17,9 @@ public class MyFrame1 extends JFrame{
     JLabel subtituloseleccion = new JLabel("Seleccione la posición del buque (5 celdas)");
     JButton botoncomenzar = new JButton("Comenzar");
     int cantPosiciones = 0;
+
     Juego juego = new Juego();
+    Thread jueguito = new Thread(juego);
 
     MyFrame1(){
         pantallaInicial();
@@ -27,6 +29,8 @@ public class MyFrame1 extends JFrame{
         setSize(650,650);
         setLocationRelativeTo(null);
         setVisible(true);
+
+
 
     }
 
@@ -59,8 +63,10 @@ public class MyFrame1 extends JFrame{
                     seleccionarDificultad();
                 }
                 juego.setNombreHumano(nombre.getText());
+
             }
         });
+
     }
 
     public void seleccionarDificultad(){
@@ -185,6 +191,7 @@ public class MyFrame1 extends JFrame{
                 botoncomenzar.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
+                        jueguito.start();
                         new MyFrame2(juego);
                         botoncomenzar.setEnabled(false);
                     }
