@@ -4,6 +4,7 @@ public class Juego {
     private Jugador maquina;
 
     public Juego(){
+
         humano = new Jugador();
         maquina = new Jugador( 1); //Un constructor distinto
     }
@@ -12,5 +13,7 @@ public class Juego {
         humano.setNombre(n);
     }
 
+
     public void inicio(){}
+
 }

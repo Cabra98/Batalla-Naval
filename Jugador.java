@@ -1,7 +1,9 @@
+
 public class Jugador {
     private String nombre;
     private Tablero tablero;
     private ModoDisparo modoDisparo;
+
 
     public Jugador(){
         nombre= "T-800";
@@ -13,7 +15,6 @@ public class Jugador {
         nombre= "Maquina-Ayarde-5000";
         tablero= new Tablero();
         modoDisparo = new ModoFacil();  //Esto en realidad tiene que crear el objeto con la dificultad que nos pida el usuario
-
     }
 
     public void setNombre(String n){
@@ -23,6 +24,7 @@ public class Jugador {
     public boolean perdio(){
         return tablero.isTerminado();
     }
+
 
     public void disparar(Tablero tablero, int i, int j){ //Para disparar hay que pasarle el tablero del contrincante
     if(modoDisparo != null){ //Disapara la maquina
@@ -40,5 +42,6 @@ public class Jugador {
     public void setModoDisparo(ModoDisparo modo){
 
         modoDisparo = modo;
+
     }
 }
