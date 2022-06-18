@@ -20,7 +20,15 @@ public class Juego {
         else if(dif.equals("Media")) maquina.setModoDisparo(new ModoDificil());
     }
 
-    public void inicio(){}
+    public void inicio(){
+        int f=0;
+        while(f==0){
+
+
+        }
+
+
+    }
 
     public Jugador getMaquina(){
         return maquina;
