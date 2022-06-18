@@ -7,8 +7,8 @@ public class ModoFacil implements ModoDisparo{
 
         int[][] tabla = tablero.getTabla();
 
-        for(int i=0; i<10; i++){
-            for(int j=0; j<10; j++){
+        for(int i=0; i<Main.tamanioMatriz; i++){
+            for(int j=0; j<Main.tamanioMatriz; j++){
 
                 if(tabla[i][j] == 2 || tabla[i][j] == 0){
 

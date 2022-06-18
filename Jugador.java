@@ -6,15 +6,18 @@ public class Jugador {
 
 
     public Jugador(){
-        nombre= "T-800";
+        nombre= "";
         tablero= new Tablero();
         modoDisparo= null;
     }
 
     public Jugador(int maquina){
-        nombre= "Maquina-Ayarde-5000";
+        nombre= "Maquina 5000";
         tablero= new Tablero();
         modoDisparo = new ModoFacil();  //Esto en realidad tiene que crear el objeto con la dificultad que nos pida el usuario
+        tablero.colocarAutomatico();
+
+
     }
 
     public void setNombre(String n){
@@ -40,7 +43,6 @@ public class Jugador {
     }
 
     public void setModoDisparo(ModoDisparo modo){
-
         modoDisparo = modo;
 
     }
