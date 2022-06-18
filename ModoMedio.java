@@ -17,7 +17,7 @@ public class ModoMedio implements ModoDisparo{
             int y = (int) (Math.random()*10);
             int x = (int) (Math.random()*10);
 
-            if(tabla[y][x] == 2 || tabla[y][x] == 0){
+            if(tabla[y][x] == 2 || tabla[y][x] == 0  || tabla[y][x] == 4){
                 tablero.recibirDisparo(y,x);
                 flag = 1;
 

@@ -10,7 +10,7 @@ public class ModoFacil implements ModoDisparo{
         for(int i=0; i<Main.tamanioMatriz; i++){
             for(int j=0; j<Main.tamanioMatriz; j++){
 
-                if(tabla[i][j] == 2 || tabla[i][j] == 0){
+                if(tabla[i][j] == 2 || tabla[i][j] == 0  || tabla[i][j] == 4){
 
                     tablero.recibirDisparo(i,j);
                     if(tabla[i][j] == 2){jugador.setModoDisparo(new DisparoCostados());
