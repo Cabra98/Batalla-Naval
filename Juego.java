@@ -12,5 +12,19 @@ public class Juego {
         humano.setNombre(n);
     }
 
+    public void setDificultad(String dif){
+        if(dif.equals("Fácil")) maquina.setModoDisparo(new ModoFacil());
+        else if(dif.equals("Media")) maquina.setModoDisparo(new ModoMedio());
+        else if(dif.equals("Media")) maquina.setModoDisparo(new ModoDificil());
+    }
+
     public void inicio(){}
+
+    public Jugador getMaquina(){
+        return maquina;
+    }
+
+    public Jugador getHumano(){
+        return humano;
+    }
 }
