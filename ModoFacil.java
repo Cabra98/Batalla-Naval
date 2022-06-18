@@ -1,4 +1,3 @@
-
 public class ModoFacil implements ModoDisparo{
 
     public ModoFacil(){}
@@ -28,4 +27,3 @@ public class ModoFacil implements ModoDisparo{
     }
 
 }
-

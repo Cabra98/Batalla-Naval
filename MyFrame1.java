@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 public class MyFrame1 extends JFrame{
     JLabel titulonombre = new JLabel("Ingrese su nombre");
     JPanel panel = new JPanel();
-
     JTextField nombre = new JTextField("",30);
     JButton botonsiguiente = new JButton("Siguiente");
     JLabel nombrenoseleccionado = new JLabel("Debe ingresar un nombre correcto");
@@ -19,8 +18,7 @@ public class MyFrame1 extends JFrame{
     JButton botoncomenzar = new JButton("Comenzar");
     int cantPosiciones = 0;
     Juego juego = new Juego();
-
-
+    JButton [][] button = new JButton[Main.tamanioMatriz][Main.tamanioMatriz];
     MyFrame1(){
         pantallaInicial();
         setTitle("Batalla Naval - !Agiles");
@@ -61,7 +59,6 @@ public class MyFrame1 extends JFrame{
                     seleccionarDificultad();
                 }
                 juego.setNombreHumano(nombre.getText());
-
             }
         });
     }
@@ -74,21 +71,15 @@ public class MyFrame1 extends JFrame{
         difmedia.setFont(new Font("Comic Sans", Font.BOLD, 16));
         difdificil.setFont(new Font("Comic Sans", Font.BOLD, 16));
 
-
         titulodificultad.setBounds(150, 30, 500, 100);
         diffacil.setBounds(200, 150, 150, 75);
         difmedia.setBounds(200, 250, 150, 75);
         difdificil.setBounds(200, 350, 150, 75);
 
-
-
-
-
         add(titulodificultad);
         add(diffacil);
         add(difmedia);
         add(difdificil);
-
 
         diffacil.addActionListener(new ActionListener() {
             @Override
@@ -126,9 +117,7 @@ public class MyFrame1 extends JFrame{
                 seleccionarBarcos();
             }
         });
-
         setVisible(true);
-
     }
 
     public void seleccionarBarcos(){
@@ -147,24 +136,28 @@ public class MyFrame1 extends JFrame{
         add(subtituloseleccion);
         add(botoncomenzar);
 
-        for(int j = 1; j <= Main.tamanioMatriz; j++ ){
-            final int fila = j-1;
-            for (int i = 1; i<= Main.tamanioMatriz; i++){
-                final int columna = i-1;
-                JButton button = new JButton();
-                button.setBounds((i*50), (50*j), 25, 25);
-                add(button);
-                button.addActionListener(new ActionListener() {
+        for(int j = 0; j < Main.tamanioMatriz; j++ ){
+            final int fila = j;
+            for (int i = 0; i< Main.tamanioMatriz; i++){
+                final int columna = i;
+                JButton boton = new JButton();
+                button[j][i] = boton;
+                button[j][i].setBounds((50+i*50), (50+50*j), 25, 25);
+                add(button[j][i]);
+                button[j][i].addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        juego.getHumano().getTablero().colocarBarco(fila, columna);
-                        button.setEnabled(false);
-                        button.setBackground(Color.GREEN);
-                        if(barcoposicionado()){
-                            cambiarSubtitulo();
-                            cantPosiciones=0;
+                        if(juego.getHumano().getTablero().celdapermitida(fila, columna)){
+                            juego.getHumano().getTablero().colocarBarco(fila, columna);
+                            button[fila][columna].setEnabled(false);
+                            button[fila][columna].setBackground(Color.GREEN);
+                            if(barcoposicionado() == 2){
+                                juego.getHumano().getTablero().llenarcuatro();
+                                cambiarSubtitulo();
+                                cantPosiciones=0;
+                            }
+                            else cantPosiciones++;
                         }
-                        else cantPosiciones++;
                     }
                 });
             }
@@ -173,22 +166,27 @@ public class MyFrame1 extends JFrame{
         setVisible(true);
     }
 
-    public boolean barcoposicionado(){
+    public int barcoposicionado(){
+        /*si es el último disparo devuelve 2, si es el primero devuelve 0 y sino devuelve 1*/
         if(subtituloseleccion.getText().equals("Seleccione la posición del buque (5 celdas)")){
-            if(cantPosiciones == 4) return true;
-            else return false;
+            if(cantPosiciones == 4) return 2;
+            else if (cantPosiciones == 0) return 0;
+            else return 1;
         }
         else if(subtituloseleccion.getText().equals("Seleccione la posición del submarino (4 celdas)")){
-            if(cantPosiciones == 3) return true;
-            else return false;
+            if(cantPosiciones == 3) return 2;
+            else if (cantPosiciones == 0) return 0;
+            else return 1;
         }
         else if(subtituloseleccion.getText().equals("Seleccione la posición del crucero (3 celdas)")){
-            if(cantPosiciones == 2) return true;
-            else return false;
+            if(cantPosiciones == 2) return 2;
+            else if (cantPosiciones == 0) return 0;
+            else return 1;
         }
         else if(subtituloseleccion.getText().equals("Seleccione la posición del primer pesquero (2 celdas)")){
-            if(cantPosiciones == 1) return true;
-            else return false;
+            if(cantPosiciones == 1) return 2;
+            else if (cantPosiciones == 0) return 0;
+            else return 1;
         }
         else if(subtituloseleccion.getText().equals("Seleccione la posición del segundo pesquero (2 celdas)")){
             if(cantPosiciones == 1) {
@@ -196,15 +194,16 @@ public class MyFrame1 extends JFrame{
                 botoncomenzar.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
+                        juego.getHumano().getTablero().limpiarcuatro();
                         new MyFrame2(juego);
                         botoncomenzar.setEnabled(false);
                     }
                 });
-                return true;
+                return 2;
             }
-            else return false;
+            else if (cantPosiciones == 0) return 0;
         }
-        else return false;
+        return 0;
     }
 
     public void cambiarSubtitulo(){
@@ -213,7 +212,5 @@ public class MyFrame1 extends JFrame{
         else if(subtituloseleccion.getText() == "Seleccione la posición del crucero (3 celdas)") subtituloseleccion.setText("Seleccione la posición del primer pesquero (2 celdas)");
         else if(subtituloseleccion.getText() == "Seleccione la posición del primer pesquero (2 celdas)") subtituloseleccion.setText("Seleccione la posición del segundo pesquero (2 celdas)");
     }
-
-
+    
 }
-

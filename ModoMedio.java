@@ -1,4 +1,3 @@
-
 import java.util.Random;
 
 public class ModoMedio implements ModoDisparo{
@@ -28,4 +27,3 @@ public class ModoMedio implements ModoDisparo{
 
 
 }
-
