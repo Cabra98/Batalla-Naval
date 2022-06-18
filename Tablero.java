@@ -1,5 +1,5 @@
 public class Tablero {
-    private int[][] tabla;
+    private int tabla[][]=new int[Main.tamanioMatriz][Main.tamanioMatriz];
 
                                                                     //0 -> AGUA
     public Tablero(){                                               //1 -> AGUA CON DISPARO
@@ -29,23 +29,23 @@ public class Tablero {
     }
 
     public void reinicio(){
-        for(int i=0; i<5;i++){                                          //0 -> AGUA
-            for(int j=0; j<5; j++){                                     //1 -> AGUA CON DISPARO
-                tabla[i][j]=0;                                          //2 -> BARCO
-            }                                                           //3 -> BARCO CON DISPARO
+        for(int i=0; i<Main.tamanioMatriz;i++){                                          //0 -> AGUA
+            for(int j=0; j<Main.tamanioMatriz; j++){                                     //1 -> AGUA CON DISPARO
+                tabla[i][j]=0;                                                           //2 -> BARCO
+            }                                                                            //3 -> BARCO CON DISPARO
         }
     }
 
     public boolean isTerminado(){
         int b =0;
-        for(int i=0; i<5;i++){
-            for(int j=0; j<5; j++){
+        for(int i=0; i<Main.tamanioMatriz;i++){
+            for(int j=0; j<Main.tamanioMatriz; j++){
                 if(tabla[i][j]==3){
                     b++;
                 }
             }
         }
-        if(b==8){
+        if(b==16){
             return true;
         }
         else

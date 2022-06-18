@@ -1,6 +1,6 @@
 
 public class DisparoCostados implements ModoDisparo {
-    public DisparoCostados(){}
+    public DisparoCostados(int i, int j){}
     public void disparo(Tablero tablero, Jugador jugador){
 
     }
