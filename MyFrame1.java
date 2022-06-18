@@ -17,15 +17,8 @@ public class MyFrame1 extends JFrame{
     JLabel subtituloseleccion = new JLabel("Seleccione la posición del buque (5 celdas)");
     JButton botoncomenzar = new JButton("Comenzar");
     int cantPosiciones = 0;
-    int tablero[][] = new int[10][10];
+    Juego juego = new Juego();
 
-    JTextField nombre = new JTextField(30);
-    JButton botonsiguiente = new JButton();
-    JButton diffacil = new JButton();
-    JButton difmedia = new JButton();
-    JButton difdificil = new JButton();
-    JLabel titulodificultad = new JLabel("Seleccione la dificultad");
-    int tamanioMatriz = 5;
     MyFrame1(){
         pantallaInicial();
         setTitle("Batalla Naval - !Agiles");
@@ -33,7 +26,6 @@ public class MyFrame1 extends JFrame{
         setLayout(null);
         setSize(650,650);
         setLocationRelativeTo(null);
-        setSize(600,600);
         setVisible(true);
 
     }
@@ -66,46 +58,23 @@ public class MyFrame1 extends JFrame{
                     nombrenoseleccionado.setVisible(false);
                     seleccionarDificultad();
                 }
-                Main.nombreasignado = nombre.getText();
+                juego.setNombreHumano(nombre.getText());
             }
         });
-        panel.setBounds(50, 200, 500, 100);
-        botonsiguiente.setBounds(200, 300, 150, 75);
-        botonsiguiente.setFont(new Font("Comic Sans", Font.BOLD, 16));
-        botonsiguiente.setText("Siguiente");
-        botonsiguiente.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Main.nombreasignado = nombre.getText();
-                titulonombre.setVisible(false);
-                panel.setVisible(false);
-                botonsiguiente.setVisible(false);
-                seleccionarDificultad();
-            }
-        });
-        panel.add(nombre);
-        add(panel);
-        add(botonsiguiente);
-        add(titulonombre);
     }
 
     public void seleccionarDificultad(){
+        setVisible(false);
         titulodificultad.setFont(new Font("Comic Sans", Font.BOLD, 25));
-        titulodificultad.setBounds(200, 50, 500, 100);
 
         diffacil.setFont(new Font("Comic Sans", Font.BOLD, 16));
         difmedia.setFont(new Font("Comic Sans", Font.BOLD, 16));
         difdificil.setFont(new Font("Comic Sans", Font.BOLD, 16));
 
         titulodificultad.setBounds(150, 30, 500, 100);
-        diffacil.setText("Fácil");
-        difmedia.setText("Media");
-        difdificil.setText("Difícil");
-
-        titulodificultad.setBounds(150, 0, 500, 100);
-        diffacil.setBounds(200, 100, 150, 75);
-        difmedia.setBounds(200, 200, 150, 75);
-        difdificil.setBounds(200, 300, 150, 75);
+        diffacil.setBounds(200, 150, 150, 75);
+        difmedia.setBounds(200, 250, 150, 75);
+        difdificil.setBounds(200, 350, 150, 75);
 
         add(titulodificultad);
         add(diffacil);
@@ -115,7 +84,7 @@ public class MyFrame1 extends JFrame{
         diffacil.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Main.dificultad = diffacil.getText();
+                juego.setDificultad(diffacil.getText());
                 titulodificultad.setVisible(false);
                 diffacil.setVisible(false);
                 difmedia.setVisible(false);
@@ -128,7 +97,7 @@ public class MyFrame1 extends JFrame{
         difmedia.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Main.dificultad = difmedia.getText();
+                juego.setDificultad(difmedia.getText());
                 titulodificultad.setVisible(false);
                 diffacil.setVisible(false);
                 difmedia.setVisible(false);
@@ -140,7 +109,7 @@ public class MyFrame1 extends JFrame{
         difdificil.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Main.dificultad = difdificil.getText();
+                juego.setDificultad(difdificil.getText());
                 titulodificultad.setVisible(false);
                 diffacil.setVisible(false);
                 difmedia.setVisible(false);
@@ -148,6 +117,7 @@ public class MyFrame1 extends JFrame{
                 seleccionarBarcos();
             }
         });
+        setVisible(true);
     }
 
     public void seleccionarBarcos(){
@@ -176,7 +146,7 @@ public class MyFrame1 extends JFrame{
                 button.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        tablero[fila][columna] = 2;
+                        juego.getHumano().getTablero().colocarBarco(fila, columna);
                         button.setEnabled(false);
                         button.setBackground(Color.GREEN);
                         if(barcoposicionado()){
@@ -215,14 +185,8 @@ public class MyFrame1 extends JFrame{
                 botoncomenzar.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        new MyFrame2();
+                        new MyFrame2(juego);
                         botoncomenzar.setEnabled(false);
-                        for(int k = 0; k< Main.tamanioMatriz; k++){
-                            for(int l = 0; l< Main.tamanioMatriz; l++){
-                                System.out.print(tablero[k][l]);
-                            }
-                            System.out.println("\n");
-                        }
                     }
                 });
                 return true;
@@ -239,23 +203,4 @@ public class MyFrame1 extends JFrame{
         else if(subtituloseleccion.getText() == "Seleccione la posición del primer pesquero (2 celdas)") subtituloseleccion.setText("Seleccione la posición del segundo pesquero (2 celdas)");
     }
 
-        add(titulodificultad);
-        add(diffacil);
-        add(difmedia);
-        add(difdificil);
-    }
-
-    public void seleccionarBarcos(){
-        this.setVisible(false);
-        for(int j = 1; j <= tamanioMatriz; j++ ){
-            for (int i=1; i<=tamanioMatriz; i++){
-                JButton button = new JButton();
-                button.setBounds((i*50), (50*j), 25, 25);
-                //button.setName("button " + i + " " + j);
-                System.out.println(button.getName());
-                add(button);
-            }
-        }
-        this.setVisible(true);
-    }
 }
