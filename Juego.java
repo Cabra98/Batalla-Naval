@@ -4,6 +4,7 @@ public class Juego {
     private Jugador maquina;
 
     public Juego(){
+
         humano = new Jugador();
         maquina = new Jugador( 1); //Un constructor distinto
     }
@@ -11,6 +12,7 @@ public class Juego {
     public void setNombreHumano(String n){
         humano.setNombre(n);
     }
+
 
     public void setDificultad(String dif){
         if(dif.equals("Fácil")) maquina.setModoDisparo(new ModoFacil());
@@ -27,4 +29,5 @@ public class Juego {
     public Jugador getHumano(){
         return humano;
     }
+
 }

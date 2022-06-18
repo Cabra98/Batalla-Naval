@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 public class MyFrame1 extends JFrame{
     JLabel titulonombre = new JLabel("Ingrese su nombre");
     JPanel panel = new JPanel();
+
     JTextField nombre = new JTextField("",30);
     JButton botonsiguiente = new JButton("Siguiente");
     JLabel nombrenoseleccionado = new JLabel("Debe ingresar un nombre correcto");
@@ -18,6 +19,7 @@ public class MyFrame1 extends JFrame{
     JButton botoncomenzar = new JButton("Comenzar");
     int cantPosiciones = 0;
     Juego juego = new Juego();
+
 
     MyFrame1(){
         pantallaInicial();
@@ -59,6 +61,7 @@ public class MyFrame1 extends JFrame{
                     seleccionarDificultad();
                 }
                 juego.setNombreHumano(nombre.getText());
+
             }
         });
     }
@@ -71,15 +74,21 @@ public class MyFrame1 extends JFrame{
         difmedia.setFont(new Font("Comic Sans", Font.BOLD, 16));
         difdificil.setFont(new Font("Comic Sans", Font.BOLD, 16));
 
+
         titulodificultad.setBounds(150, 30, 500, 100);
         diffacil.setBounds(200, 150, 150, 75);
         difmedia.setBounds(200, 250, 150, 75);
         difdificil.setBounds(200, 350, 150, 75);
 
+
+
+
+
         add(titulodificultad);
         add(diffacil);
         add(difmedia);
         add(difdificil);
+
 
         diffacil.addActionListener(new ActionListener() {
             @Override
@@ -117,7 +126,9 @@ public class MyFrame1 extends JFrame{
                 seleccionarBarcos();
             }
         });
+
         setVisible(true);
+
     }
 
     public void seleccionarBarcos(){
@@ -203,4 +214,6 @@ public class MyFrame1 extends JFrame{
         else if(subtituloseleccion.getText() == "Seleccione la posición del primer pesquero (2 celdas)") subtituloseleccion.setText("Seleccione la posición del segundo pesquero (2 celdas)");
     }
 
+
 }
+

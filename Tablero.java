@@ -48,6 +48,7 @@ public class Tablero {
             return false;
     }
 
+
     public int[][] getTabla(){
 
         return tabla;
@@ -142,5 +143,4 @@ public class Tablero {
                 System.out.println("\n");
             }
         }
-
 }
