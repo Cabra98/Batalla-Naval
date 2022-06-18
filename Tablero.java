@@ -1,5 +1,8 @@
+import java.util.Random;
+import java.util.Arrays;
+
 public class Tablero {
-    private int[][] tabla;
+    private int[][] tabla = new int[Main.tamanioMatriz][Main.tamanioMatriz];
 
                                                                     //0 -> AGUA
     public Tablero(){                                               //1 -> AGUA CON DISPARO
@@ -7,30 +10,23 @@ public class Tablero {
     }                                                               //3 -> BARCO CON DISPARO
 
     public void colocarBarco(int i, int j){
-
+        tabla[i][j] = 2;
     }
 
     public boolean recibirDisparo(int i, int j){            //cambia el contenido del tablero, no se consideran
         if(tabla[i][j]==0){                                 //barcos enteros sino pedazos de barcos
             tabla[i][j]=1;
-            return true;
-        }
-        if(tabla[i][j]==1){
             return false;
         }
-        if(tabla[i][j]==2){
+        else{
             tabla[i][j]=3;
             return true;
         }
-        if(tabla[i][j]==3){
-            return false;
-        }
-        return false;
     }
 
     public void reinicio(){
-        for(int i=0; i<5;i++){                                          //0 -> AGUA
-            for(int j=0; j<5; j++){                                     //1 -> AGUA CON DISPARO
+        for(int i=0; i<Main.tamanioMatriz;i++){                                          //0 -> AGUA
+            for(int j=0; j<Main.tamanioMatriz; j++){                                     //1 -> AGUA CON DISPARO
                 tabla[i][j]=0;                                          //2 -> BARCO
             }                                                           //3 -> BARCO CON DISPARO
         }
@@ -38,8 +34,8 @@ public class Tablero {
 
     public boolean isTerminado(){
         int b =0;
-        for(int i=0; i<5;i++){
-            for(int j=0; j<5; j++){
+        for(int i=0; i<Main.tamanioMatriz;i++){
+            for(int j=0; j<Main.tamanioMatriz; j++){
                 if(tabla[i][j]==3){
                     b++;
                 }
@@ -58,4 +54,93 @@ public class Tablero {
         return tabla;
     }
 
+    public void colocarAutomatico(){
+         boolean UltimoBarco = false;
+            Random random = new Random();
+            int[][] field = new int[Main.tamanioMatriz][Main.tamanioMatriz];
+
+            for (int i = 5; i > 0; i--) {
+
+                if(i==1){
+                    i = 2;
+                    UltimoBarco = true;
+                }
+                //System.out.println("Placing ship with length: " + i);
+                //start point of the ship and direction
+                int x = random.nextInt(field.length);
+                int y = random.nextInt(field.length);
+                boolean vertical = random.nextBoolean();
+
+                // Correct start point so that the ship could fit in the field
+                if (vertical) {
+                    if (y + i > Main.tamanioMatriz) {
+                        y -= i;
+                    }
+                } else if (x + i > Main.tamanioMatriz) {
+                    x -= i;
+                }
+                //System.out.println("Start point: " + x + ", " + y + "; dir: " + (vertical ? "VERTICAL" : "HORIZONTAL"));
+
+                boolean isFree = true;
+                // Check for free space
+                if (vertical) {
+                    for (int m = y; m < y + i; m++) {
+                        if (field[m][x] != 0) {
+                            isFree = false;
+                            break;
+                        }
+                    }
+                } else {
+                    for (int n = x; n < x + i; n++) {
+                        if (field[y][n] != 0) {
+                            isFree = false;
+                            break;
+                        }
+                    }
+                }
+
+                if (!isFree) {
+                    i++;
+                    continue;
+                }
+
+                if (vertical) {
+                    for (int m = Math.max(0, x - 1); m < Math.min(Main.tamanioMatriz, x + 2); m++) {
+                        for (int n = Math.max(0, y - 1); n < Math.min(Main.tamanioMatriz, y + i + 1); n++) {
+                            field[n][m] = 9;
+                        }
+                    }
+                } else {
+                    for (int m = Math.max(0, y - 1); m < Math.min(Main.tamanioMatriz, y + 2); m++) {
+                        for (int n = Math.max(0, x - 1); n < Math.min(Main.tamanioMatriz, x + i + 1); n++) {
+                            field[m][n] = 9;
+                        }
+                    }
+                }
+
+                // Fill in the ship cells
+                for (int j = 0; j < i; j++) {
+                    field[y][x] = i;
+                    if (vertical) {
+                        y++;
+                    } else {
+                        x++;
+                    }
+                }
+                if(UltimoBarco == true){
+                    break;
+                    //i = 1;
+                    //UltimoBarco = false;
+                }
+            }
+
+
+            for (int i = 0; i < Main.tamanioMatriz; i++) {
+                for (int j = 0; j < Main.tamanioMatriz; j++) {
+                    tabla[i][j] = field[i][j] == 0 || field[i][j] == 9 ? 0 : 2;
+                    System.out.print(tabla[i][j]);
+                }
+                System.out.println("\n");
+            }
+        }
 }
