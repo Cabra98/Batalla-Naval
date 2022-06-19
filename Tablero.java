@@ -35,9 +35,12 @@ public class Tablero {
             tabla[i][j]=1;
             return false;
         }
-        else{
+        else if(tabla[i][j]==2){
             tabla[i][j]=3;
             return true;
+        }
+        else{
+            return false;
         }
     }
 

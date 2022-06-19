@@ -4,6 +4,7 @@ public class Juego implements Runnable {
     private Jugador maquina;
 
 
+
     public Juego() {
 
         humano = new Jugador();
@@ -16,9 +17,18 @@ public class Juego implements Runnable {
 
 
     public void setDificultad(String dif) {
-        if (dif.equals("Fácil")) maquina.setModoDisparo(new ModoFacil());
-        else if (dif.equals("Media")) maquina.setModoDisparo(new ModoMedio());
-        else if (dif.equals("Media")) maquina.setModoDisparo(new ModoDificil());
+        if (dif.equals("Fácil")) {
+            maquina.setModoDisparo(new ModoFacil());
+            maquina.setDificultad("Facil");
+        }
+        else if (dif.equals("Media")) {
+            maquina.setDificultad("Media");
+            maquina.setModoDisparo(new ModoMedio());
+        }
+        else if (dif.equals("Dificil")) {
+            maquina.setModoDisparo(new ModoDificil());
+            maquina.setDificultad("Dificil");
+        }
     }
 
     public void run(){
@@ -42,9 +52,8 @@ public class Juego implements Runnable {
 
             ganaMaquina = humano.getTablero().isTerminado();
 
-            maquina.setTurno(false);  //Simbolico
             humano.setTurno(true);
-            break;
+
         }
 
         if(ganaHumano) {

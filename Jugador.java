@@ -4,6 +4,12 @@ public class Jugador {
     private Tablero tablero;
     private ModoDisparo modoDisparo;
     private boolean turno;
+    private int xIni;
+    private int yIni;
+    private int x;
+    private int y;
+    private int cambio=3;
+    private String dificultad;
 
 
     public Jugador(){
@@ -21,6 +27,47 @@ public class Jugador {
         turno = false;
 
     }
+
+    public void setDificultad(String dif){
+        dificultad=dif;
+    }
+    public String getDificultad(){
+        return dificultad;
+    }
+
+    public void setCambio(int i){
+        cambio=i;
+    }
+
+    public int getCambio() {
+        return cambio;
+    }
+
+    public void setXIni(int x){
+        this.x = x;
+    }
+    public void setYIni(int y){
+        this.y = y;
+    }
+    public int getxIni(){
+        return x;
+    }
+    public int getyIni(){
+        return y;
+    }
+    public void setX(int x){
+        this.x = x;
+    }
+    public void setY(int y){
+        this.y = y;
+    }
+    public int getx(){
+        return x;
+    }
+    public int gety(){
+        return y;
+    }
+
 
     public void setNombre(String n){
         nombre= n;
