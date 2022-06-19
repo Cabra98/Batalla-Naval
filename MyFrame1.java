@@ -210,6 +210,7 @@ public class MyFrame1 extends JFrame implements Observer{
 
                         new MyFrame2(juego);
                         botoncomenzar.setEnabled(false);
+                        bloquearbotones();
                     }
                 });
                 return 2;
@@ -227,6 +228,19 @@ public class MyFrame1 extends JFrame implements Observer{
     }
 
     public void update(){
-        button[juego.getHumano().getTablero().getUltimoY()][juego.getHumano().getTablero().getUltimoX()].setBackground(Color.red);
+        //button[juego.getHumano().getTablero().getUltimoY()][juego.getHumano().getTablero().getUltimoX()].setBackground(Color.red);
+        if(juego.getHumano().getTablero().contenido(juego.getHumano().getTablero().getUltimoY(), juego.getHumano().getTablero().getUltimoX()) == 3){
+            button[juego.getHumano().getTablero().getUltimoY()][juego.getHumano().getTablero().getUltimoX()].setBackground(Color.red);}
+        else if(juego.getHumano().getTablero().contenido(juego.getHumano().getTablero().getUltimoY(), juego.getHumano().getTablero().getUltimoX()) == 1){
+            button[juego.getHumano().getTablero().getUltimoY()][juego.getHumano().getTablero().getUltimoX()].setBackground(Color.blue);
+        }
+    }
+
+    public void bloquearbotones(){
+        for (int i = 0; i<Main.tamanioMatriz; i++){
+            for(int j = 0; j<Main.tamanioMatriz; j++){
+                button[i][j].setEnabled(false);
+            }
+        }
     }
 }

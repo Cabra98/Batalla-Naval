@@ -6,9 +6,11 @@ import java.awt.event.ActionListener;
 
 public class MyFrame2 extends JFrame implements Observer {
     JButton [][] button = new JButton[Main.tamanioMatriz][Main.tamanioMatriz];
-
+    private Juego juego;
 
     MyFrame2(Juego juego){
+        this.juego=juego;
+        juego.register(this);
         setTitle("Batalla Naval - !Agiles");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLayout(null);

@@ -6,7 +6,6 @@ public class ModoMedio implements ModoDisparo{
 
 
         int flag = 0;
-
         while(flag == 0){
 
             int i = (int) (Math.random()*10);
