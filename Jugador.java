@@ -1,3 +1,5 @@
+import static java.lang.Math.round;
+
 public class Jugador {
     private String nombre;
     private Tablero tablero;
@@ -9,7 +11,10 @@ public class Jugador {
     private int y;
     private int cambio=3;
     private String dificultad;
-
+    private float numturno = 0;
+    private float cantaciertos = 0;
+    private int cantfallas = 0;
+    private float eficiencia = 0;
 
     public Jugador(){
         nombre= "";
@@ -109,6 +114,38 @@ public class Jugador {
     public boolean getTurno(){
         return turno;
     }
+    public String getNombre(){return nombre;}
 
+    public float getnumturno(){
+        return numturno;
+    }
+
+    public void setnumturno(){
+        numturno++;
+    }
+
+    public float getcantaciertos(){
+        return cantaciertos;
+    }
+
+    public float getcantfallas(){
+        return cantfallas;
+    }
+
+    public float geteficiencia(){
+        return eficiencia;
+    }
+
+    public void setCantaciertos(){
+        cantaciertos++;
+    }
+
+    public void setCantfallas(){
+        cantfallas++;
+    }
+
+    public void setEficiencia(){
+        eficiencia =round((getcantaciertos()/getnumturno())*10000)/100;
+    }
 }
 

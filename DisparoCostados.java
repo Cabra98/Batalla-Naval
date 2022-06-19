@@ -46,7 +46,7 @@ public class DisparoCostados implements ModoDisparo {
                 jugador.setCambio(3);
                 if (jugador.getDificultad().equals("Facil")) {
                     jugador.setModoDisparo(new ModoFacil());
-                } else if (jugador.getDificultad().equals("Medio")) {
+                } else if (jugador.getDificultad().equals("Media")) {
                     jugador.setModoDisparo(new ModoMedio());
                 } else {
                     jugador.setModoDisparo(new ModoDificil());
@@ -85,7 +85,7 @@ public class DisparoCostados implements ModoDisparo {
                     jugador.setCambio(3);
                     if (jugador.getDificultad().equals("Facil")) {
                         jugador.setModoDisparo(new ModoFacil());
-                    } else if (jugador.getDificultad().equals("Medio")) {
+                    } else if (jugador.getDificultad().equals("Media")) {
                         jugador.setModoDisparo(new ModoMedio());
                     } else {
                         jugador.setModoDisparo(new ModoDificil());
@@ -101,7 +101,7 @@ public class DisparoCostados implements ModoDisparo {
                     jugador.setCambio(3);
                     if (jugador.getDificultad().equals("Facil")) {
                         jugador.setModoDisparo(new ModoFacil());
-                    } else if (jugador.getDificultad().equals("Medio")) {
+                    } else if (jugador.getDificultad().equals("Media")) {
                         jugador.setModoDisparo(new ModoMedio());
                     } else {
                         jugador.setModoDisparo(new ModoDificil());

@@ -12,7 +12,7 @@ public class Juego implements Runnable, Subject{
     public Juego() {
         observers=new ArrayList();
         humano = new Jugador();
-        maquina = new Jugador(1); //Un constructor distinto
+        maquina = new Jugador(1);
     }
 
     public void setNombreHumano(String n) {
@@ -29,7 +29,7 @@ public class Juego implements Runnable, Subject{
             maquina.setDificultad("Media");
             maquina.setModoDisparo(new ModoMedio());
         }
-        else if (dif.equals("Dificil")) {
+        else if (dif.equals("Difícil")) {
             maquina.setModoDisparo(new ModoDificil());
             maquina.setDificultad("Dificil");
         }
@@ -45,17 +45,43 @@ public class Juego implements Runnable, Subject{
             while (humano.getTurno()) {
                 System.out.print(".");
             }
+            humano.setnumturno();
+            if(maquina.getTablero().contenido(maquina.getTablero().getUltimoY(), maquina.getTablero().getUltimoX()) == 3) {
+                humano.setCantaciertos();
+                humano.setEficiencia();
+            }
+
+            else if(maquina.getTablero().contenido(maquina.getTablero().getUltimoY(), maquina.getTablero().getUltimoX()) == 1){
+                humano.setCantfallas();
+                humano.setEficiencia();
+            }
+
+            notifyObserver();
 
             ganaHumano = maquina.getTablero().isTerminado();
 
             maquina.setTurno(true);
             maquina.disparar(humano.getTablero());
+            maquina.setnumturno();
+
+            if(humano.getTablero().contenido(humano.getTablero().getUltimoY(), humano.getTablero().getUltimoX()) == 3) {
+                maquina.setCantaciertos();
+            }
+
+            else if(humano.getTablero().contenido(humano.getTablero().getUltimoY(), humano.getTablero().getUltimoX()) == 1){
+                maquina.setCantfallas();
+            }
+
+            maquina.setEficiencia();
             notifyObserver();
             ganaMaquina = humano.getTablero().isTerminado();
 
             humano.setTurno(true);
 
         }
+
+
+
 
         if(ganaHumano) {
 

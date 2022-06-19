@@ -17,12 +17,16 @@ public class MyFrame1 extends JFrame implements Observer{
     JLabel subtituloseleccion = new JLabel("Seleccione la posición del buque (5 celdas)");
     JButton botoncomenzar = new JButton("Comenzar");
     int cantPosiciones = 0;
+    JLabel nombremaquina = new JLabel();
+    JLabel cantidadTurnos = new JLabel();
+    JLabel cantidadAciertos = new JLabel();
+    JLabel cantidadErrores = new JLabel();
+    JLabel eficiencia = new JLabel();
 
 
 
     JButton [][] button = new JButton[Main.tamanioMatriz][Main.tamanioMatriz];
     private Juego juego;
-    ImageIcon imagen= new ImageIcon("mira.png");
 
     MyFrame1(Juego juego){
         this.juego=juego;
@@ -30,9 +34,20 @@ public class MyFrame1 extends JFrame implements Observer{
         setTitle("Batalla Naval - !Agiles");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLayout(null);
-        setSize(650,650);
+        setSize(750,750);
         setLocationRelativeTo(null);
         setVisible(true);
+        nombremaquina.setText(juego.getMaquina().getNombre());
+        nombremaquina.setBounds(550, 50, 200, 50);
+        nombremaquina.setFont(new Font("Comic Sans", Font.BOLD, 16));
+        cantidadTurnos.setBounds(550, 100, 200, 50);
+        cantidadTurnos.setFont(new Font("Comic Sans", Font.BOLD, 16));
+        cantidadAciertos.setBounds(550, 150, 200, 50);
+        cantidadAciertos.setFont(new Font("Comic Sans", Font.BOLD, 16));
+        cantidadErrores.setBounds(550, 200, 200, 50);
+        cantidadErrores.setFont(new Font("Comic Sans", Font.BOLD, 16));
+        eficiencia.setBounds(550, 250, 200, 50);
+        eficiencia.setFont(new Font("Comic Sans", Font.BOLD, 16));
 
 
 
@@ -205,7 +220,12 @@ public class MyFrame1 extends JFrame implements Observer{
                     @Override
                     public void actionPerformed(ActionEvent e) {
 
-
+                        add(nombremaquina);
+                        nombremaquina.setVisible(true);
+                        add(cantidadTurnos);
+                        add(cantidadAciertos);
+                        add(cantidadErrores);
+                        add(eficiencia);
                         juego.getHumano().getTablero().limpiarcuatro();
 
                         new MyFrame2(juego);
@@ -234,6 +254,10 @@ public class MyFrame1 extends JFrame implements Observer{
         else if(juego.getHumano().getTablero().contenido(juego.getHumano().getTablero().getUltimoY(), juego.getHumano().getTablero().getUltimoX()) == 1){
             button[juego.getHumano().getTablero().getUltimoY()][juego.getHumano().getTablero().getUltimoX()].setBackground(Color.blue);
         }
+        cantidadTurnos.setText("Turno N° " + (int) juego.getMaquina().getnumturno());
+        cantidadAciertos.setText("Cantidad de aciertos: " + (int) juego.getMaquina().getcantaciertos());
+        cantidadErrores.setText("Cantidad de fallas: " + (int) juego.getMaquina().getcantfallas());
+        eficiencia.setText("Eficiencia: " + juego.getMaquina().geteficiencia() + "%");
     }
 
     public void bloquearbotones(){
