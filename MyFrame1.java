@@ -19,6 +19,7 @@ public class MyFrame1 extends JFrame{
     int cantPosiciones = 0;
     Juego juego = new Juego();
     JButton [][] button = new JButton[Main.tamanioMatriz][Main.tamanioMatriz];
+    Thread jueguito = new Thread(juego);
     MyFrame1(){
         pantallaInicial();
         setTitle("Batalla Naval - !Agiles");
@@ -194,6 +195,7 @@ public class MyFrame1 extends JFrame{
                 botoncomenzar.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
+                        jueguito.start();
                         juego.getHumano().getTablero().limpiarcuatro();
                         new MyFrame2(juego);
                         botoncomenzar.setEnabled(false);

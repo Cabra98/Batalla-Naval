@@ -3,11 +3,27 @@ import java.util.Arrays;
 
 public class Tablero {
     private int[][] tabla = new int[Main.tamanioMatriz][Main.tamanioMatriz];
+    private int ultimo[][]=new int[2][1];
 
     //0 -> AGUA
     public Tablero(){                                               //1 -> AGUA CON DISPARO
         reinicio();                                                 //2 -> BARCO
     }                                                               //3 -> BARCO CON DISPARO
+
+    public int contenido(int i, int j){
+        return tabla[i][j];
+    }
+
+    public int getUltimoTiroX(){
+        return ultimo[0][0];
+    }
+    public int getUltimoTiroY(){
+        return ultimo[1][0];
+    }
+
+    public void setUltimoTiro(int[][] ultimo){
+        this.ultimo=ultimo;
+    }
 
     public void colocarBarco(int i, int j){
         tabla[i][j] = 2;
@@ -41,7 +57,7 @@ public class Tablero {
                 }
             }
         }
-        if(b==8){
+        if(b==16){
             return true;
         }
         else
