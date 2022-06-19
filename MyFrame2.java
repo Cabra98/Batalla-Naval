@@ -3,7 +3,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class MyFrame2 extends JFrame  {
+public class MyFrame2 extends JFrame  implements Observer{
     MyFrame2(Juego juego){
         setTitle("Batalla Naval - !Agiles");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -25,25 +25,15 @@ public class MyFrame2 extends JFrame  {
                         else button.setBackground(Color.BLUE);
                         button.setEnabled(false);
                         juego.getHumano().setTurno(false);
+
                     }
                 });
             }
         }
 
+    }
 
-
-       // JButton iniciar = new JButton("Inicio");
-        //iniciar.setBounds(500, 550, 100, 50);
-        //add(iniciar);
-        //iniciar.addActionListener( new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                largar hilo;
-//                iniciar.setEnabled(false);
-//                juego.inicio();
-//
-//            }
-//        });
+    public void update(){
 
     }
 }

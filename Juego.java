@@ -1,4 +1,4 @@
-public class Juego implements Runnable {
+public class Juego implements Runnable, Subject{
 
     private Jugador humano;
     private Jugador maquina;
@@ -36,20 +36,16 @@ public class Juego implements Runnable {
         boolean ganaHumano = false;
         boolean ganaMaquina = false;
 
-        while ((!ganaHumano || !ganaMaquina)) {
-            while (humano.getTurno()== true) {
-                System.out.println("A");
-
+        while (!ganaHumano && !ganaMaquina) {
+            while (humano.getTurno()) {
+                System.out.println(".");
             }
-
 
             ganaHumano = maquina.getTablero().isTerminado();
 
-            //Deshabilitar toda la interfaz para el usuario mientras dispara la maquina
-
-            maquina.setTurno(true);  //Simbolico
+            maquina.setTurno(true);
             maquina.disparar(humano.getTablero());
-
+            notifyObserver();
             ganaMaquina = humano.getTablero().isTerminado();
 
             humano.setTurno(true);
@@ -58,22 +54,15 @@ public class Juego implements Runnable {
 
         if(ganaHumano) {
 
-        //Rodrigo mostrando la panza
+        System.out.println("GANASTE");
 
-    }else
+    }
+        else {
 
-    {
-
-        //Derrota
+            System.out.println("perdiste");
     }
 
 }
-
-
-
-
-
-
 
     public Jugador getMaquina(){
         return maquina;
@@ -83,4 +72,18 @@ public class Juego implements Runnable {
         return humano;
     }
 
+    @Override
+    public void register() {
+
+    }
+
+    @Override
+    public void remove() {
+
+    }
+
+    @Override
+    public void notifyObserver() {
+
+    }
 }

@@ -3,7 +3,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class MyFrame1 extends JFrame{
+public class MyFrame1 extends JFrame implements {
     JLabel titulonombre = new JLabel("Ingrese su nombre");
     JPanel panel = new JPanel();
 
