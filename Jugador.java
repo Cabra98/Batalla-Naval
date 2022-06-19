@@ -47,25 +47,29 @@ public class Jugador {
 
 
     public void setXIni(int x){
-        this.x = x;
+        xIni = x;
+        System.out.println(xIni);
     }
     public void setYIni(int y){
-        this.y = y;
+        yIni = y;
+        System.out.println(yIni);
     }
     public int getxIni(){
-        return x;
+        return xIni;
     }
     public int getyIni(){
-        return y;
+        return yIni;
     }
    
 
     
     public void setX(int x){
         this.x = x;
+        System.out.println(x);
     }
     public void setY(int y){
         this.y = y;
+        System.out.println(y);
     }
     public int getx(){
         return x;

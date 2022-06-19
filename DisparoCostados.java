@@ -6,6 +6,7 @@ public class DisparoCostados implements ModoDisparo {
 
     public void disparo(Tablero tablero, Jugador jugador) {
         tablero.recibirDisparo(jugador.gety(), jugador.getx());
+        
         if (tablero.contenido(jugador.gety(), jugador.getx()) == 1) {
             if(jugador.getCambio()==3 ){
                 if(jugador.getxIni()<9) {
