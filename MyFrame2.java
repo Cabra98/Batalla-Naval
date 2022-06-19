@@ -3,8 +3,10 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class MyFrame2 extends JFrame {
+
+public class MyFrame2 extends JFrame implements Observer {
     JButton [][] button = new JButton[Main.tamanioMatriz][Main.tamanioMatriz];
+
 
     MyFrame2(Juego juego){
         setTitle("Batalla Naval - !Agiles");
@@ -24,12 +26,21 @@ public class MyFrame2 extends JFrame {
                 button[j][i].addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        if(juego.getMaquina().getTablero().recibirDisparo(fila, columna)) button[fila][columna].setBackground(Color.RED);
-                        else button[fila][columna].setBackground(Color.BLUE);
-                        button[fila][columna].setEnabled(false);
+
+                        if(juego.getMaquina().getTablero().recibirDisparo(fila, columna)) button.setBackground(Color.RED);
+                        else button.setBackground(Color.BLUE);
+                        button.setEnabled(false);
+                        juego.getHumano().setTurno(false);
+
+
                     }
                 });
             }
         }
+
+    }
+
+    public void update(){
+
     }
 }

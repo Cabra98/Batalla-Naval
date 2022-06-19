@@ -2,7 +2,9 @@ import java.util.Random;
 import java.util.Arrays;
 
 public class Tablero {
+
     private int[][] tabla = new int[Main.tamanioMatriz][Main.tamanioMatriz];
+
     private int ultimo[][]=new int[2][1];
 
     //0 -> AGUA
@@ -34,17 +36,21 @@ public class Tablero {
             tabla[i][j]=1;
             return false;
         }
-        else{
+        else if(tabla[i][j]==2){
             tabla[i][j]=3;
             return true;
+        }
+        else{
+            return false;
         }
     }
 
     public void reinicio(){
         for(int i=0; i<Main.tamanioMatriz;i++){                                          //0 -> AGUA
             for(int j=0; j<Main.tamanioMatriz; j++){                                     //1 -> AGUA CON DISPARO
-                tabla[i][j]=0;                                          //2 -> BARCO
-            }                                                           //3 -> BARCO CON DISPARO
+                tabla[i][j]=0;                                                           //2 -> BARCO
+            }                                                                            //3 -> BARCO CON DISPARO
+
         }
     }
 

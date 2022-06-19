@@ -3,7 +3,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class MyFrame1 extends JFrame{
+public class MyFrame1 extends JFrame implements {
     JLabel titulonombre = new JLabel("Ingrese su nombre");
     JPanel panel = new JPanel();
     JTextField nombre = new JTextField("",30);
@@ -17,9 +17,12 @@ public class MyFrame1 extends JFrame{
     JLabel subtituloseleccion = new JLabel("Seleccione la posición del buque (5 celdas)");
     JButton botoncomenzar = new JButton("Comenzar");
     int cantPosiciones = 0;
+
     Juego juego = new Juego();
+
     JButton [][] button = new JButton[Main.tamanioMatriz][Main.tamanioMatriz];
     Thread jueguito = new Thread(juego);
+
     MyFrame1(){
         pantallaInicial();
         setTitle("Batalla Naval - !Agiles");
@@ -28,6 +31,8 @@ public class MyFrame1 extends JFrame{
         setSize(650,650);
         setLocationRelativeTo(null);
         setVisible(true);
+
+
 
     }
 
@@ -62,6 +67,7 @@ public class MyFrame1 extends JFrame{
                 juego.setNombreHumano(nombre.getText());
             }
         });
+
     }
 
     public void seleccionarDificultad(){
@@ -196,7 +202,9 @@ public class MyFrame1 extends JFrame{
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         jueguito.start();
+
                         juego.getHumano().getTablero().limpiarcuatro();
+
                         new MyFrame2(juego);
                         botoncomenzar.setEnabled(false);
                     }
