@@ -9,6 +9,7 @@ public class ModoDificil implements ModoDisparo{
 
         while(flag == 0){
 
+
             int i = (int) (Math.random()*10);
             int j = (int) (Math.random()*10);
 
@@ -46,6 +47,6 @@ public class ModoDificil implements ModoDisparo{
 
         }
         jugador.setTurno(false);
+
     }
 }
-

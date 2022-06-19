@@ -1,4 +1,3 @@
-
 public class Jugador {
     private String nombre;
     private Tablero tablero;
@@ -26,7 +25,9 @@ public class Jugador {
         tablero.colocarAutomatico();
         turno = false;
 
+
     }
+
 
     public void setDificultad(String dif){
         dificultad=dif;
@@ -35,6 +36,7 @@ public class Jugador {
         return dificultad;
     }
 
+
     public void setCambio(int i){
         cambio=i;
     }
@@ -42,6 +44,7 @@ public class Jugador {
     public int getCambio() {
         return cambio;
     }
+
 
     public void setXIni(int x){
         this.x = x;
@@ -55,6 +58,9 @@ public class Jugador {
     public int getyIni(){
         return y;
     }
+   
+
+    
     public void setX(int x){
         this.x = x;
     }
@@ -79,10 +85,10 @@ public class Jugador {
 
 
     public void disparar(Tablero tablero){ //Para disparar hay que pasarle el tablero del contrincante
+        if(modoDisparo != null){ //Disapara la maquina
+            modoDisparo.disparo(tablero, this);
+        }
 
-    if(modoDisparo != null){ //Disapara la maquina
-        modoDisparo.disparo(tablero, this);
-    }
     }
 
     public Tablero getTablero(){
@@ -91,14 +97,14 @@ public class Jugador {
 
     public void setModoDisparo(ModoDisparo modo){
         modoDisparo = modo;
-
     }
 
     public void setTurno(boolean t){
         turno = t;
     }
-
     public boolean getTurno(){
         return turno;
     }
+
 }
+

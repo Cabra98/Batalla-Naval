@@ -1,4 +1,6 @@
+
 public class Juego implements Runnable, Subject{
+
 
     private Jugador humano;
     private Jugador maquina;
@@ -29,6 +31,7 @@ public class Juego implements Runnable, Subject{
             maquina.setModoDisparo(new ModoDificil());
             maquina.setDificultad("Dificil");
         }
+
     }
 
     public void run(){
@@ -64,6 +67,7 @@ public class Juego implements Runnable, Subject{
 
 }
 
+
     public Jugador getMaquina(){
         return maquina;
     }
@@ -71,6 +75,7 @@ public class Juego implements Runnable, Subject{
     public Jugador getHumano(){
         return humano;
     }
+
 
     @Override
     public void register() {
@@ -87,3 +92,4 @@ public class Juego implements Runnable, Subject{
 
     }
 }
+
