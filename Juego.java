@@ -56,7 +56,6 @@ public class Juego implements Runnable, Subject{
 
 
             while (humano.getTurno()) {
-                System.out.print(".");
             }
             humano.setnumturno();
             if(maquina.getTablero().contenido(maquina.getTablero().getUltimoY(), maquina.getTablero().getUltimoX()) == 3) {
@@ -92,20 +91,6 @@ public class Juego implements Runnable, Subject{
             humano.setTurno(true);
 
         }
-
-
-
-
-        if(ganaHumano) {
-
-        System.out.println("GANASTE");
-
-    }
-        else {
-
-            System.out.println("perdiste");
-    }
-
 }
 
 

@@ -22,11 +22,9 @@ public class MyFrame1 extends JFrame implements Observer{
     JLabel cantidadAciertos = new JLabel();
     JLabel cantidadErrores = new JLabel();
     JLabel eficiencia = new JLabel();
-
-
-
     JButton [][] button = new JButton[Main.tamanioMatriz][Main.tamanioMatriz];
     private Juego juego;
+    JLabel partidaterminada = new JLabel();
 
     MyFrame1(Juego juego){
         this.juego=juego;
@@ -48,7 +46,9 @@ public class MyFrame1 extends JFrame implements Observer{
         cantidadErrores.setFont(new Font("Comic Sans", Font.BOLD, 16));
         eficiencia.setBounds(550, 250, 200, 50);
         eficiencia.setFont(new Font("Comic Sans", Font.BOLD, 16));
-
+        partidaterminada.setBounds(250, 150, 500, 500);
+        partidaterminada.setFont(new Font("Comic Sans", Font.BOLD, 30));
+        add(partidaterminada); partidaterminada.setVisible(false);
 
 
 
@@ -192,7 +192,6 @@ public class MyFrame1 extends JFrame implements Observer{
     }
 
     public int barcoposicionado(){
-        /*si es el último disparo devuelve 2, si es el primero devuelve 0 y sino devuelve 1*/
         if(subtituloseleccion.getText().equals("Seleccione la posición del buque (5 celdas)")){
             if(cantPosiciones == 4) return 2;
             else if (cantPosiciones == 0) return 0;
@@ -248,7 +247,6 @@ public class MyFrame1 extends JFrame implements Observer{
     }
 
     public void update(){
-        //button[juego.getHumano().getTablero().getUltimoY()][juego.getHumano().getTablero().getUltimoX()].setBackground(Color.red);
         if(juego.getHumano().getTablero().contenido(juego.getHumano().getTablero().getUltimoY(), juego.getHumano().getTablero().getUltimoX()) == 3){
             button[juego.getHumano().getTablero().getUltimoY()][juego.getHumano().getTablero().getUltimoX()].setBackground(Color.red);}
         else if(juego.getHumano().getTablero().contenido(juego.getHumano().getTablero().getUltimoY(), juego.getHumano().getTablero().getUltimoX()) == 1){
@@ -258,6 +256,16 @@ public class MyFrame1 extends JFrame implements Observer{
         cantidadAciertos.setText("Cantidad de aciertos: " + (int) juego.getMaquina().getcantaciertos());
         cantidadErrores.setText("Cantidad de fallas: " + (int) juego.getMaquina().getcantfallas());
         eficiencia.setText("Eficiencia: " + juego.getMaquina().geteficiencia() + "%");
+        if (juego.getHumano().getTablero().isTerminado()) {
+            partidafinalizada();
+            partidaterminada.setText("Perdiste :(");
+            partidaterminada.setVisible(true);
+        } else if (juego.getMaquina().getTablero().isTerminado()) {
+            partidafinalizada();
+            partidaterminada.setText("Ganaste!!!! :)");
+            partidaterminada.setVisible(true);
+
+        }
     }
 
     public void bloquearbotones(){
@@ -266,5 +274,23 @@ public class MyFrame1 extends JFrame implements Observer{
                 button[i][j].setEnabled(false);
             }
         }
+    }
+
+    public void partidafinalizada(){
+        setVisible(false);
+        for(int i=0; i<Main.tamanioMatriz; i++){
+            for(int j=0; j<Main.tamanioMatriz;j++){
+                button[i][j].setVisible(false);
+            }
+        }
+        botoncomenzar.setVisible(false);
+        tituloseleccionarbarcos.setVisible(false);
+        subtituloseleccion.setVisible(false);
+        nombremaquina.setVisible(false);
+        cantidadErrores.setVisible(false);
+        cantidadAciertos.setVisible(false);
+        cantidadTurnos.setVisible(false);
+        eficiencia.setVisible(false);
+        setVisible(true);
     }
 }

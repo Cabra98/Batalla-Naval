@@ -27,8 +27,8 @@ public class Tablero {
         tabla[i][j] = 2;
     }
 
-    public boolean recibirDisparo(int i, int j){            //cambia el contenido del tablero, no se consideran
-        if(tabla[i][j]==0){                                 //barcos enteros sino pedazos de barcos
+    public boolean recibirDisparo(int i, int j){
+        if(tabla[i][j]==0){
             tabla[i][j]=1;
             ultimoX=j;
             ultimoY=i;

@@ -26,7 +26,7 @@ public class Jugador {
     public Jugador(int maquina){
         nombre= "Maquina 5000";
         tablero= new Tablero();
-        modoDisparo = new ModoFacil();  //Esto en realidad tiene que crear el objeto con la dificultad que nos pida el usuario
+        modoDisparo = new ModoFacil();
         tablero.colocarAutomatico();
         turno = false;
 
@@ -53,11 +53,9 @@ public class Jugador {
 
     public void setXIni(int x){
         xIni = x;
-        System.out.println(xIni);
     }
     public void setYIni(int y){
         yIni = y;
-        System.out.println(yIni);
     }
     public int getxIni(){
         return xIni;
@@ -70,11 +68,9 @@ public class Jugador {
     
     public void setX(int x){
         this.x = x;
-        System.out.println(x);
     }
     public void setY(int y){
         this.y = y;
-        System.out.println(y);
     }
     public int getx(){
         return x;
@@ -93,8 +89,8 @@ public class Jugador {
     }
 
 
-    public void disparar(Tablero tablero){ //Para disparar hay que pasarle el tablero del contrincante
-        if(modoDisparo != null){ //Disapara la maquina
+    public void disparar(Tablero tablero){
+        if(modoDisparo != null){
             modoDisparo.disparo(tablero, this);
         }
 

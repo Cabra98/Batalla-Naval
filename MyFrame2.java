@@ -68,5 +68,8 @@ public class MyFrame2 extends JFrame implements Observer {
         cantidadAciertos.setText("Cantidad de aciertos: " + (int) juego.getHumano().getcantaciertos());
         cantidadErrores.setText("Cantidad de fallas: " + (int) juego.getHumano().getcantfallas());
         eficiencia.setText("Eficiencia: " + juego.getHumano().geteficiencia() + "%");
+        if(juego.getMaquina().getTablero().isTerminado() || juego.getHumano().getTablero().isTerminado()){
+            this.setVisible(false);
+        }
     }
 }
