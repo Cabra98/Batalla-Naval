@@ -1,11 +1,16 @@
-public class Juego implements Runnable {
+import java.util.ArrayList;
+
+public class Juego implements Runnable, Subject{
+
 
     private Jugador humano;
     private Jugador maquina;
+    private ArrayList observers;
+
 
 
     public Juego() {
-
+        observers=new ArrayList();
         humano = new Jugador();
         maquina = new Jugador(1); //Un constructor distinto
     }
@@ -16,9 +21,19 @@ public class Juego implements Runnable {
 
 
     public void setDificultad(String dif) {
-        if (dif.equals("Fácil")) maquina.setModoDisparo(new ModoFacil());
-        else if (dif.equals("Media")) maquina.setModoDisparo(new ModoMedio());
-        else if (dif.equals("Media")) maquina.setModoDisparo(new ModoDificil());
+        if (dif.equals("Fácil")) {
+            maquina.setModoDisparo(new ModoFacil());
+            maquina.setDificultad("Facil");
+        }
+        else if (dif.equals("Media")) {
+            maquina.setDificultad("Media");
+            maquina.setModoDisparo(new ModoMedio());
+        }
+        else if (dif.equals("Dificil")) {
+            maquina.setModoDisparo(new ModoDificil());
+            maquina.setDificultad("Dificil");
+        }
+
     }
 
     public void run(){
@@ -26,44 +41,33 @@ public class Juego implements Runnable {
         boolean ganaHumano = false;
         boolean ganaMaquina = false;
 
-        while ((!ganaHumano || !ganaMaquina)) {
-            while (humano.getTurno()== true) {
-                System.out.println("A");
-
+        while (!ganaHumano && !ganaMaquina) {
+            while (humano.getTurno()) {
+                System.out.print(".");
             }
-
 
             ganaHumano = maquina.getTablero().isTerminado();
 
-            //Deshabilitar toda la interfaz para el usuario mientras dispara la maquina
-
-            maquina.setTurno(true);  //Simbolico
+            maquina.setTurno(true);
             maquina.disparar(humano.getTablero());
-
+            notifyObserver();
             ganaMaquina = humano.getTablero().isTerminado();
 
-            maquina.setTurno(false);  //Simbolico
             humano.setTurno(true);
-            break;
+
         }
 
         if(ganaHumano) {
 
-        //Rodrigo mostrando la panza
+        System.out.println("GANASTE");
 
-    }else
+    }
+        else {
 
-    {
-
-        //Derrota
+            System.out.println("perdiste");
     }
 
 }
-
-
-
-
-
 
 
     public Jugador getMaquina(){
@@ -74,4 +78,23 @@ public class Juego implements Runnable {
         return humano;
     }
 
+
+    @Override
+    public void register(Observer o) {
+        observers.add(o);
+    }
+
+    @Override
+    public void remove(Observer o) {
+        observers.remove(o);
+    }
+
+    @Override
+    public void notifyObserver() {
+        for(int i=0;i<observers.size();i++){
+            Observer observer=(Observer) observers.get(i);
+            observer.update();
+        }
+    }
 }
+
