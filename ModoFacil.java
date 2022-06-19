@@ -1,9 +1,10 @@
 
 public class ModoFacil implements ModoDisparo {
-
+    String modo;
     public ModoFacil() {
+        modo="Facil";
     }
-
+    public String getModo(){return modo;}
     public void disparo(Tablero tablero, Jugador jugador) {
         int flag = 0;
 
@@ -13,12 +14,10 @@ public class ModoFacil implements ModoDisparo {
 
                 if (tablero.contenido(i, j) == 2 || tablero.contenido(i, j) == 0 || tablero.contenido(i, j) == 4) {
                     tablero.recibirDisparo(i, j);
-                    System.out.println("DISPARO BIEN A" + i + " :" + j);
                     flag = 1;
                     if (tablero.contenido(i, j) == 3) {
                         jugador.setXIni(j);
                         jugador.setYIni(i);
-                        System.out.println("GUARDO INICIALES");
                         if (i > 0 && tablero.contenido(i - 1, j) != 1 && tablero.contenido(i - 1, j) != 3) {
                             jugador.setX(j);
                             jugador.setY(i - 1);

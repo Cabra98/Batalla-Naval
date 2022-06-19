@@ -21,7 +21,7 @@ public class Juego implements Runnable, Subject{
 
 
     public void setDificultad(String dif) {
-        if (dif.equals("Fácil")) {
+        if (dif.equals("Facil")) {
             maquina.setModoDisparo(new ModoFacil());
             maquina.setDificultad("Facil");
         }
@@ -29,7 +29,7 @@ public class Juego implements Runnable, Subject{
             maquina.setDificultad("Media");
             maquina.setModoDisparo(new ModoMedio());
         }
-        else if (dif.equals("Difícil")) {
+        else if (dif.equals("Dificil")) {
             maquina.setModoDisparo(new ModoDificil());
             maquina.setDificultad("Dificil");
         }
@@ -42,6 +42,19 @@ public class Juego implements Runnable, Subject{
         boolean ganaMaquina = false;
 
         while (!ganaHumano && !ganaMaquina) {
+
+            if(humano.getnumturno()>9 && !(maquina.getModoDisparo().equals("Costado")) && (humano.geteficiencia()> maquina.geteficiencia())){
+                if(maquina.getDificultad().equals("Facil")){
+                    maquina.setModoDisparo(new ModoMedio());
+                    maquina.setDificultad("Media");
+                }
+                else if(maquina.getDificultad().equals("Media")){
+                    maquina.setModoDisparo(new ModoDificil());
+                    maquina.setDificultad("Dificil");
+                }
+            }
+
+
             while (humano.getTurno()) {
                 System.out.print(".");
             }

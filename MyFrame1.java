@@ -9,9 +9,9 @@ public class MyFrame1 extends JFrame implements Observer{
     JTextField nombre = new JTextField("",30);
     JButton botonsiguiente = new JButton("Siguiente");
     JLabel nombrenoseleccionado = new JLabel("Debe ingresar un nombre correcto");
-    JButton diffacil = new JButton("Fácil");
+    JButton diffacil = new JButton("Facil");
     JButton difmedia = new JButton("Media");
-    JButton difdificil = new JButton("Difícil");
+    JButton difdificil = new JButton("Dificil");
     JLabel titulodificultad = new JLabel("Seleccione la dificultad");
     JLabel tituloseleccionarbarcos = new JLabel("Seleccione las posiciones de sus barcos");
     JLabel subtituloseleccion = new JLabel("Seleccione la posición del buque (5 celdas)");

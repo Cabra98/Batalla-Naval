@@ -1,7 +1,10 @@
 public class ModoMedio implements ModoDisparo{
+    String modo;
+    public ModoMedio(){
+        modo="Media";
+    }
 
-    public ModoMedio(){}
-
+    public String getModo(){return modo;}
     public void disparo(Tablero tablero, Jugador jugador){
 
 

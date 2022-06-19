@@ -40,7 +40,7 @@ public class Jugador {
     public String getDificultad(){
         return dificultad;
     }
-
+    public String getModoDisparo(){return modoDisparo.getModo();}
 
     public void setCambio(int i){
         cambio=i;

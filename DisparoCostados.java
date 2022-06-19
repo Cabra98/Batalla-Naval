@@ -1,8 +1,11 @@
 
 public class DisparoCostados implements ModoDisparo {
+    String modo;
     public DisparoCostados() {
+        modo="Costado";
     }
 
+    public String getModo(){return modo;}
 
     public void disparo(Tablero tablero, Jugador jugador) {
         tablero.recibirDisparo(jugador.gety(), jugador.getx());
@@ -50,6 +53,7 @@ public class DisparoCostados implements ModoDisparo {
                     jugador.setModoDisparo(new ModoMedio());
                 } else {
                     jugador.setModoDisparo(new ModoDificil());
+                    llenarcuatro(tablero);
                 }
             }
 
@@ -89,6 +93,7 @@ public class DisparoCostados implements ModoDisparo {
                         jugador.setModoDisparo(new ModoMedio());
                     } else {
                         jugador.setModoDisparo(new ModoDificil());
+                        llenarcuatro(tablero);
                     }
                 }
             }
@@ -105,12 +110,22 @@ public class DisparoCostados implements ModoDisparo {
                         jugador.setModoDisparo(new ModoMedio());
                     } else {
                         jugador.setModoDisparo(new ModoDificil());
+                        llenarcuatro(tablero);
                     }
                 }
             }
 
     }
 
+    }
+    public void llenarcuatro(Tablero tablero){
+        for (int k=0;k<Main.tamanioMatriz;k++){
+            for(int l=0;l<Main.tamanioMatriz;l++){
+                if(tablero.contenido(k,l) == 3){
+                    tablero.verificaralrededor(k,l);
+                }
+            }
+        }
     }
 }
 
