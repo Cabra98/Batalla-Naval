@@ -1,14 +1,16 @@
+import java.util.ArrayList;
 
 public class Juego implements Runnable, Subject{
 
 
     private Jugador humano;
     private Jugador maquina;
+    private ArrayList observers;
 
 
 
     public Juego() {
-
+        observers=new ArrayList();
         humano = new Jugador();
         maquina = new Jugador(1); //Un constructor distinto
     }
@@ -78,18 +80,21 @@ public class Juego implements Runnable, Subject{
 
 
     @Override
-    public void register() {
-
+    public void register(Observer o) {
+        observers.add(o);
     }
 
     @Override
-    public void remove() {
-
+    public void remove(Observer o) {
+        observers.remove(o);
     }
 
     @Override
     public void notifyObserver() {
-
+        for(int i=0;i<observers.size();i++){
+            Observer observer=(Observer) observers.get(i);
+            observer.update();
+        }
     }
 }
 

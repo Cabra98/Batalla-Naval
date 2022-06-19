@@ -3,7 +3,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class MyFrame1 extends JFrame implements {
+public class MyFrame1 extends JFrame implements Observer{
     JLabel titulonombre = new JLabel("Ingrese su nombre");
     JPanel panel = new JPanel();
     JTextField nombre = new JTextField("",30);
@@ -18,12 +18,13 @@ public class MyFrame1 extends JFrame implements {
     JButton botoncomenzar = new JButton("Comenzar");
     int cantPosiciones = 0;
 
-    Juego juego = new Juego();
+
 
     JButton [][] button = new JButton[Main.tamanioMatriz][Main.tamanioMatriz];
-    Thread jueguito = new Thread(juego);
+    private Juego juego;
 
-    MyFrame1(){
+    MyFrame1(Juego juego){
+        this.juego=juego;
         pantallaInicial();
         setTitle("Batalla Naval - !Agiles");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -201,7 +202,7 @@ public class MyFrame1 extends JFrame implements {
                 botoncomenzar.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        jueguito.start();
+
 
                         juego.getHumano().getTablero().limpiarcuatro();
 
@@ -222,5 +223,8 @@ public class MyFrame1 extends JFrame implements {
         else if(subtituloseleccion.getText() == "Seleccione la posición del crucero (3 celdas)") subtituloseleccion.setText("Seleccione la posición del primer pesquero (2 celdas)");
         else if(subtituloseleccion.getText() == "Seleccione la posición del primer pesquero (2 celdas)") subtituloseleccion.setText("Seleccione la posición del segundo pesquero (2 celdas)");
     }
-    
+
+    public void update(){
+        
+    }
 }

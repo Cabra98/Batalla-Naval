@@ -27,9 +27,9 @@ public class MyFrame2 extends JFrame implements Observer {
                     @Override
                     public void actionPerformed(ActionEvent e) {
 
-                        if(juego.getMaquina().getTablero().recibirDisparo(fila, columna)) button.setBackground(Color.RED);
-                        else button.setBackground(Color.BLUE);
-                        button.setEnabled(false);
+                        if(juego.getMaquina().getTablero().recibirDisparo(fila, columna)) button[fila][columna].setBackground(Color.RED);
+                        else button[fila][columna].setBackground(Color.BLUE);
+                        button[fila][columna].setEnabled(false);
                         juego.getHumano().setTurno(false);
 
 
