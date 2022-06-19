@@ -43,7 +43,7 @@ public class Juego implements Runnable, Subject{
 
         while (!ganaHumano && !ganaMaquina) {
             while (humano.getTurno()) {
-                System.out.println(".");
+                System.out.print(".");
             }
 
             ganaHumano = maquina.getTablero().isTerminado();

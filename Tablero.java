@@ -159,9 +159,9 @@ public class Tablero {
         for (int i = 0; i < Main.tamanioMatriz; i++) {
             for (int j = 0; j < Main.tamanioMatriz; j++) {
                 tabla[i][j] = field[i][j] == 0 || field[i][j] == 9 ? 0 : 2;
-                System.out.print(tabla[i][j]);
+
             }
-            System.out.println("\n");
+
         }
     }
 
