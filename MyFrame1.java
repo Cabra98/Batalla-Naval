@@ -22,6 +22,7 @@ public class MyFrame1 extends JFrame implements Observer{
 
     JButton [][] button = new JButton[Main.tamanioMatriz][Main.tamanioMatriz];
     private Juego juego;
+    ImageIcon imagen= new ImageIcon("mira.png");
 
     MyFrame1(Juego juego){
         this.juego=juego;
@@ -32,6 +33,7 @@ public class MyFrame1 extends JFrame implements Observer{
         setSize(650,650);
         setLocationRelativeTo(null);
         setVisible(true);
+
 
 
 
@@ -225,6 +227,6 @@ public class MyFrame1 extends JFrame implements Observer{
     }
 
     public void update(){
-        
+        button[juego.getHumano().getTablero().getUltimoY()][juego.getHumano().getTablero().getUltimoX()].setBackground(Color.red);
     }
 }
