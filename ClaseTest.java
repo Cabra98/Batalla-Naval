@@ -1,30 +1,8 @@
-import org.junit.Test;
 import static org.junit.Assert.*;
 
-public class Test {
+import org.junit.Test;
 
-    /*@Test
-    public void testllenar4(){
-        Tablero tablero = new Tablero();
-        tablero.colocarBarco(3, 3);
-        tablero.colocarBarco(3, 2);
-        tablero.colocarBarco(3, 1);
-        tablero.colocarBarco(3, 0);
-        verificaralrededor(3, 3);
-        verificaralrededor(3, 2);
-        verificaralrededor(3, 1);
-        verificaralrededor(3, 0);
-        System.out.println(tablero.contenido(2, 0));
-        assertTrue(tablero.contenido(2, 0) == 4);
-        assertTrue(tablero.contenido(2, 1) == 4);
-        assertTrue(tablero.contenido(2, 2) == 4);
-        assertTrue(tablero.contenido(2, 3) == 4);
-        assertTrue(tablero.contenido(4, 0) == 4);
-        assertTrue(tablero.contenido(4, 1) == 4);
-        assertTrue(tablero.contenido(4, 2) == 4);
-        assertTrue(tablero.contenido(4, 3) == 4);
-        assertTrue(tablero.contenido(3, 4) == 4);
-    }*/
+public class ClaseTest {
 
     @Test
     public void testDisparoAcierto(){
@@ -112,5 +90,29 @@ public class Test {
         assertNotNull(juego.getMaquina());
         assertNotNull(juego.getHumano());
     }
+
+    
+    /*@Test
+    public void testllenar4(){
+        Tablero tablero = new Tablero();
+        tablero.colocarBarco(3, 3);
+        tablero.colocarBarco(3, 2);
+        tablero.colocarBarco(3, 1);
+        tablero.colocarBarco(3, 0);
+        verificaralrededor(3, 3);
+        verificaralrededor(3, 2);
+        verificaralrededor(3, 1);
+        verificaralrededor(3, 0);
+        System.out.println(tablero.contenido(2, 0));
+        assertTrue(tablero.contenido(2, 0) == 4);
+        assertTrue(tablero.contenido(2, 1) == 4);
+        assertTrue(tablero.contenido(2, 2) == 4);
+        assertTrue(tablero.contenido(2, 3) == 4);
+        assertTrue(tablero.contenido(4, 0) == 4);
+        assertTrue(tablero.contenido(4, 1) == 4);
+        assertTrue(tablero.contenido(4, 2) == 4);
+        assertTrue(tablero.contenido(4, 3) == 4);
+        assertTrue(tablero.contenido(3, 4) == 4);
+    }*/
     
 }
