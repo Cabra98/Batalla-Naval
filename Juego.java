@@ -1,15 +1,18 @@
+import static org.junit.Assert.*;
 import java.util.ArrayList;
+import org.junit.Test;
+
 
 public class Juego implements Subject{
 
 
     private Jugador humano;
     private Jugador maquina;
-    private ArrayList observers;
+    private ArrayList <Observer> observers;
 
 
     public Juego() {
-        observers=new ArrayList();
+        observers=new ArrayList<Observer>();
         humano = new Jugador();
         maquina = new Jugador(1);
     }
@@ -61,5 +64,32 @@ public class Juego implements Subject{
             observer.update();
         }
     }
+
+    @Test
+    public void testDificultadMaquina() {
+
+        Jugador maquina = new Jugador(1);
+        String dificultad = "Media";
+        maquina.setDificultad(dificultad);
+        assertEquals("Media", maquina.getDificultad());
+    }
+
+    @Test
+    public void testDificultadHumano() {
+        Jugador maquina = new Jugador(1);
+        ModoMedio modoMedio = new ModoMedio();
+        maquina.setModoDisparo(modoMedio);
+        assertEquals("Media", maquina.getModoDisparo());
+    }
+
+    @Test
+    public void constructor() {
+        Juego juego=new Juego();
+        assertNotNull(juego.getMaquina());
+        assertNotNull(juego.getHumano());
+    }
 }
+
+
+
 

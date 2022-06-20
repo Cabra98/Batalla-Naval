@@ -29,8 +29,6 @@ public class Jugador {
         modoDisparo = new ModoFacil();
         tablero.colocarAutomatico();
         turno = false;
-
-
     }
 
 

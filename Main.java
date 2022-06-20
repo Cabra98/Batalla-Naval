@@ -4,8 +4,6 @@ public class Main {
     public static void main(String[] args) {
         Juego juego=new Juego();
         MyFrame1 ventana=new MyFrame1(juego);
-        //Thread jueguito = new Thread(juego);
         juego.register(ventana);
-        //jueguito.start();
     }
 }
