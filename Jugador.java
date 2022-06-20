@@ -24,7 +24,7 @@ public class Jugador {
     }
 
     public Jugador(int maquina){
-        nombre= "Maquina 5000";
+        nombre= "Maquina 500";
         tablero= new Tablero();
         modoDisparo = new ModoFacil();
         tablero.colocarAutomatico();

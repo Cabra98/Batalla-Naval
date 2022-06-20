@@ -214,6 +214,7 @@ public class MyFrame1 extends JFrame implements Observer{
         }
         else if(subtituloseleccion.getText().equals("Seleccione la posición del segundo pesquero (2 celdas)")){
             if(cantPosiciones == 1) {
+                bloquearbotones();
                 botoncomenzar.setVisible(true);
                 botoncomenzar.addActionListener(new ActionListener() {
                     @Override
@@ -230,7 +231,6 @@ public class MyFrame1 extends JFrame implements Observer{
 
                         new MyFrame2(juego);
                         botoncomenzar.setEnabled(false);
-                        bloquearbotones();
                     }
                 });
                 return 2;
