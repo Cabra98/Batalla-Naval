@@ -50,11 +50,42 @@ public class MyFrame2 extends JFrame implements Observer {
                     @Override
                     public void actionPerformed(ActionEvent e) {
 
-                        if(juego.getMaquina().getTablero().recibirDisparo(fila, columna)) button[fila][columna].setBackground(Color.RED);
-                        else button[fila][columna].setBackground(Color.BLUE);
+                        if(juego.getMaquina().getTablero().recibirDisparo(fila, columna)) {
+                            button[fila][columna].setBackground(Color.RED);
+                            juego.getHumano().setCantaciertos();
+                            juego.getHumano().setnumturno();
+                            juego.getHumano().setEficiencia();
+                        }
+                        else if(!juego.getMaquina().getTablero().recibirDisparo(fila, columna)){
+                            button[fila][columna].setBackground(Color.BLUE);
+                            juego.getHumano().setCantfallas();
+                            juego.getHumano().setnumturno();
+                            juego.getHumano().setEficiencia();
+                        }
                         button[fila][columna].setEnabled(false);
-                        juego.getHumano().setTurno(false);
+                        juego.getMaquina().disparar(juego.getHumano().getTablero());
+                        if(juego.getHumano().getTablero().contenido(juego.getHumano().getTablero().getUltimoY(), juego.getHumano().getTablero().getUltimoX()) == 3){
+                            juego.getMaquina().setCantaciertos();
+                            juego.getMaquina().setnumturno();
+                            juego.getMaquina().setEficiencia();
+                        }
+                        else if(juego.getHumano().getTablero().contenido(juego.getHumano().getTablero().getUltimoY(), juego.getHumano().getTablero().getUltimoX()) == 1){
+                            juego.getMaquina().setCantfallas();
+                            juego.getMaquina().setnumturno();
+                            juego.getMaquina().setEficiencia();
+                        }
+                        juego.notifyObserver();
 
+                        if(juego.getHumano().getnumturno()>9 && !(juego.getMaquina().getModoDisparo().equals("Costado")) && (juego.getHumano().geteficiencia()> juego.getMaquina().geteficiencia())){
+                            if(juego.getMaquina().getDificultad().equals("Facil")){
+                                juego.getMaquina().setModoDisparo(new ModoMedio());
+                                juego.getMaquina().setDificultad("Media");
+                            }
+                            else if(juego.getMaquina().getDificultad().equals("Media")){
+                                juego.getMaquina().setModoDisparo(new ModoDificil());
+                                juego.getMaquina().setDificultad("Dificil");
+                            }
+                        }
 
                     }
                 });

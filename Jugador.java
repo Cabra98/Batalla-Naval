@@ -63,9 +63,9 @@ public class Jugador {
     public int getyIni(){
         return yIni;
     }
-   
 
-    
+
+
     public void setX(int x){
         this.x = x;
     }

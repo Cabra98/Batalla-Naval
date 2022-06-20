@@ -8,7 +8,7 @@ public class Tablero {
     private int ultimoX;
 
 
-                                                                    //0 -> AGUA
+    //0 -> AGUA
     public Tablero(){                                               //1 -> AGUA CON DISPARO
         reinicio();                                                 //2 -> BARCO
     }                                                               //3 -> BARCO CON DISPARO
