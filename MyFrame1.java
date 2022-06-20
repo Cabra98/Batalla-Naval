@@ -218,7 +218,8 @@ public class MyFrame1 extends JFrame implements Observer{
                 botoncomenzar.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-
+                        tituloseleccionarbarcos.setVisible(false);
+                        subtituloseleccion.setVisible(false);
                         add(nombremaquina);
                         nombremaquina.setVisible(true);
                         add(cantidadTurnos);
