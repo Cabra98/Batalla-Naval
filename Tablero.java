@@ -85,13 +85,13 @@ public class Tablero {
                 i = 2;
                 UltimoBarco = true;
             }
-            //System.out.println("Placing ship with length: " + i);
-            //start point of the ship and direction
+            
+            //Punto de inicio de posición del barco y dirección
             int x = random.nextInt(field.length);
             int y = random.nextInt(field.length);
             boolean vertical = random.nextBoolean();
 
-            // Correct start point so that the ship could fit in the field
+            // Corregir el punto de inicio de la posición del barco para que entre en las dimensiones del tablero.
             if (vertical) {
                 if (y + i > Main.tamanioMatriz) {
                     y -= i;
@@ -99,10 +99,9 @@ public class Tablero {
             } else if (x + i > Main.tamanioMatriz) {
                 x -= i;
             }
-            //System.out.println("Start point: " + x + ", " + y + "; dir: " + (vertical ? "VERTICAL" : "HORIZONTAL"));
 
             boolean isFree = true;
-            // Check for free space
+            // Verificar si el barco tiene espacio suficiente para ser colocado. Ej: Si el barco es de 5 casillas, se verifica que desde su punto inicial, tenga 4 casillas libres (para abajo).
             if (vertical) {
                 for (int m = y; m < y + i; m++) {
                     if (field[m][x] != 0) {
@@ -118,12 +117,14 @@ public class Tablero {
                     }
                 }
             }
-
+            
+            // Si no hay espacio disponible para el barco, se vuelve a intentar sobre el mismo barco.
             if (!isFree) {
                 i++;
                 continue;
             }
 
+            // Se rellenan los espacios de las proximidades inmediatas del barco para que no se puedan colocar otros allí.
             if (vertical) {
                 for (int m = Math.max(0, x - 1); m < Math.min(Main.tamanioMatriz, x + 2); m++) {
                     for (int n = Math.max(0, y - 1); n < Math.min(Main.tamanioMatriz, y + i + 1); n++) {
@@ -138,7 +139,7 @@ public class Tablero {
                 }
             }
 
-            // Fill in the ship cells
+            // Se coloca el barco en el tablero rellenando las celdas verificadas anteriormente.
             for (int j = 0; j < i; j++) {
                 field[y][x] = i;
                 if (vertical) {
